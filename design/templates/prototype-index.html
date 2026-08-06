@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PROJECT_TITLE}}</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.8/lib/theme-chalk/index.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app" class="app-shell">
+    <div class="navbar">
+      <i class="el-icon-s-check"></i>
+      <span style="margin-left: 8px;">{{PROJECT_TITLE}}</span>
+    </div>
+    <div class="layout-body">
+      <aside class="sidebar">
+        <el-menu :default-active="activeMenu" @select="handleMenuSelect">
+          <!-- 菜单项由生成器根据 menus_json 填充 -->
+        </el-menu>
+      </aside>
+      <main class="main-content">
+        <iframe class="content-frame" :src="currentUrl"></iframe>
+      </main>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.15.8/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          activeMenu: '{{DEFAULT_MENU}}',
+          menuPages: {
+            '{{DEFAULT_MENU}}': '{{DEFAULT_PAGE}}'
+          },
+          currentUrl: '{{DEFAULT_PAGE}}'
+        };
+      },
+      methods: {
+        handleMenuSelect(index) {
+          this.activeMenu = index;
+          this.currentUrl = this.menuPages[index];
+        }
+      }
+    });
+  </script>
+</body>
+</html>

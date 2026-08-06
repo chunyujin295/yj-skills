@@ -1,0 +1,79 @@
+// ===================================
+// Design System Variables
+// 基于 ccsp-ui 设计规范
+// ===================================
+
+// 颜色体系
+// ---------
+
+// 主色
+$primary-color: #409EFF;      // 蓝色主色（按钮、链接、选中状态）
+$success-color: #67C23A;      // 成功状态（已启用、未过期）
+$warning-color: #E6A23C;      // 警告状态（即将过期）
+$danger-color: #F56C6C;       // 危险状态（已过期、删除）
+$info-color: #909399;         // 信息
+
+// 背景
+$bg-page: #F0F2F5;            // 页面背景（浅灰）
+$bg-card: #FFFFFF;            // 卡片背景（白色）
+$bg-sidebar: #FFFFFF;         // 侧边栏背景（白色）
+
+// 文本颜色
+$text-primary: #303133;       // 主要文本
+$text-regular: #606266;       // 常规文本
+$text-secondary: #909399;     // 次要文本
+
+// 边框
+$border-color: #E4E7ED;       // 边框颜色
+$border-light: #EBEEF5;       // 浅边框
+
+// 侧边栏
+$sidebar-active-bg: #ECF5FF;  // 选中菜单背景
+$sidebar-active-color: #409EFF; // 选中菜单文字颜色
+
+// 间距系统
+// ---------
+
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+$spacing-xxl: 24px;
+
+// 字体规范
+// ---------
+
+$font-size-base: 14px;
+$font-size-small: 12px;
+$font-size-large: 16px;
+$font-size-title: 16px;       // 页面标题
+$font-size-heading: 18px;     // 大标题
+
+$line-height-base: 1.5;
+
+// 组件变量
+// ---------
+
+$border-radius-base: 4px;
+$border-radius-small: 2px;
+$border-radius-large: 8px;
+
+$box-shadow-card: 0 1px 4px rgba(0, 0, 0, 0.08);
+
+// 布局变量
+// ---------
+
+$sidebar-width: 210px;
+$sidebar-collapsed-width: 64px;
+$header-height: 50px;
+
+// 按钮样式
+// ---------
+
+$btn-primary-bg: #409EFF;
+$btn-primary-color: #FFFFFF;
+$btn-default-bg: #FFFFFF;
+$btn-default-border: #DCDFE6;
+$btn-danger-border: #F56C6C;
+$btn-danger-color: #F56C6C;

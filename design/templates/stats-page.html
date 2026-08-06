@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{PAGE_TITLE}} - 实人认证平台</title>
+  <link rel="stylesheet" href="https://unpkg.com/element-ui@2.15.8/lib/theme-chalk/index.css">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/echarts@4.9.0/dist/echarts.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <div class="app-container">
+      <!-- 时间范围选择 -->
+      <el-form :inline="true" size="small" class="mb8">
+        <el-form-item label="时间范围">
+          <el-date-picker v-model="dateRange" type="daterange" range-separator="至"
+                          start-placeholder="开始日期" end-placeholder="结束日期"
+                          value-format="yyyy-MM-dd" @change="handleSearch">
+          </el-date-picker>
+        </el-form-item>
+        <el-form-item>
+          <el-button type="primary" icon="el-icon-search" @click="handleSearch">查询</el-button>
+        </el-form-item>
+      </el-form>
+
+      <!-- 统计卡片 -->
+      <el-row :gutter="20" class="mb8">
+        <el-col :span="6">
+          <el-card shadow="hover">
+            <div class="stat-card">
+              <div class="stat-value">{{stats.total}}</div>
+              <div class="stat-label">总计</div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="6">
+          <el-card shadow="hover">
+            <div class="stat-card">
+              <div class="stat-value" style="color: #13ce66;">{{stats.success}}</div>
+              <div class="stat-label">成功</div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="6">
+          <el-card shadow="hover">
+            <div class="stat-card">
+              <div class="stat-value" style="color: #ff4949;">{{stats.failed}}</div>
+              <div class="stat-label">失败</div>
+            </div>
+          </el-card>
+        </el-col>
+        <el-col :span="6">
+          <el-card shadow="hover">
+            <div class="stat-card">
+              <div class="stat-value" style="color: #1890ff;">{{stats.rate}}%</div>
+              <div class="stat-label">成功率</div>
+            </div>
+          </el-card>
+        </el-col>
+      </el-row>
+
+      <!-- 图表区域 -->
+      <el-row :gutter="20">
+        <el-col :span="12">
+          <el-card shadow="hover">
+            <div id="chart1" style="width: 100%; height: 350px;"></div>
+          </el-card>
+        </el-col>
+        <el-col :span="12">
+          <el-card shadow="hover">
+            <div id="chart2" style="width: 100%; height: 350px;"></div>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/vue@2.6.14/dist/vue.js"></script>
+  <script src="https://unpkg.com/element-ui@2.15.8/lib/index.js"></script>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+          dateRange: [],
+          stats: { total: 12580, success: 12178, failed: 402, rate: 96.8 }
+        }
+      },
+      mounted() {
+        this.initCharts();
+      },
+      methods: {
+        handleSearch() { this.$message.success('查询条件已应用'); },
+        initCharts() {
+          const chart1 = echarts.init(document.getElementById('chart1'));
+          const chart2 = echarts.init(document.getElementById('chart2'));
+          chart1.setOption({
+            tooltip: { trigger: 'axis' },
+            grid: { left: 40, right: 20, top: 30, bottom: 35 },
+            xAxis: { type: 'category', data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'] },
+            yAxis: { type: 'value' },
+            series: [{ name: '数量', type: 'line', smooth: true, data: [120, 132, 101, 134, 190, 230, 210] }]
+          });
+          chart2.setOption({
+            tooltip: { trigger: 'item' },
+            legend: { bottom: 0 },
+            series: [{
+              name: '状态',
+              type: 'pie',
+              radius: ['45%', '65%'],
+              center: ['50%', '45%'],
+              data: [
+                { value: this.stats.success, name: '成功' },
+                { value: this.stats.failed, name: '失败' }
+              ]
+            }]
+          });
+          window.addEventListener('resize', function() {
+            chart1.resize();
+            chart2.resize();
+          });
+        }
+      }
+    })
+  </script>
+</body>
+</html>
