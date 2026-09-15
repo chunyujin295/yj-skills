@@ -1,0 +1,4 @@
+interface:
+  display_name: "中文技术博客写作"
+  short_description: "以自然叙事、准确解释和克制类比写作技术博客文章"
+  default_prompt: "使用 $technical-blog-writing 以专业、通俗、有自然叙事的中文技术博客风格写作或改写这篇内容。"
